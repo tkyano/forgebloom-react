@@ -1,0 +1,23 @@
+.site-footer {
+    background-color: var(--primary-red);
+    color: var(--white);
+    text-align: center;
+    padding: .5rem;
+    font-size: 1.1rem;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.site-footer a {
+    color: var(--white);
+    text-decoration: none;
+    transition: all 0.25s ease;
+    padding: 0rem .25rem;
+    border-radius: 6px;
+}
+
+.site-footer a:hover {
+    background-color: var(--accent-red);
+}

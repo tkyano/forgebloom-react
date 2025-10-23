@@ -1,0 +1,28 @@
+#toggle-nav {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 25px;
+    height: 20px;
+}
+
+#toggle-nav div {
+    height: 3px;
+    background-color: var(--white);
+    border-radius: 2px;
+}
+
+.hamburger-menu {
+    display: none; /* hide on large screens */
+}
+
+/* Show hamburger on small screens */
+@media (max-width: 1210px) {
+    #toggle-nav {
+        display: flex;
+    }
+
+    .hamburger-menu {
+        display: block; /* show hamburger menu */
+    }
+}

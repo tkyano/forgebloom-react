@@ -1,0 +1,39 @@
+#main-nav {
+    display: flex; /* normal nav visible on large screens */
+    align-items: center;
+    gap: 1rem;
+}
+
+#main-nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 1.5rem;
+}
+
+#main-nav a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    transition: all 0.25s ease;
+}
+
+#main-nav a:hover {
+    background-color: var(--accent-red);
+}
+
+#main-nav a.active {
+    background-color: var(--white);
+    color: var(--primary-red);
+}
+
+/* Responsive for small screens */
+@media (max-width: 1210px) {
+    #main-nav {
+        display: none; /* hide normal nav */
+    }
+}
