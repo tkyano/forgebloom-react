@@ -10,7 +10,7 @@ import CreateDeck from './pages/CreateDeck';
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PIBLIC_URL}>
       <Routes>
         <Route path="/" element={<Layout/>}>
           <Route index element={<Home />}/>
