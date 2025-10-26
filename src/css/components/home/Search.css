@@ -1,0 +1,33 @@
+.search-container {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.search-box {
+    flex: 1;
+    padding: 0.8rem;
+    border: 1px solid var(--secondary);
+    border-radius: 0.5rem;
+    background-color: var(--white);
+    color: var(--text-light);
+}
+
+.search-box::placeholder {
+    color: var(--dark-gray);
+}
+
+.search-button {
+    background-color: var(--accent);
+    border: none;
+    border-radius: 1rem;
+    padding: 0.8rem 1.2rem;
+    color: var(--white);
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.search-button:hover {
+    transform: scale(1.2);
+}

@@ -13,16 +13,15 @@
 }
 
 .hamburger-menu {
-    display: none; /* hide on large screens */
+    display: none; 
 }
 
-/* Show hamburger on small screens */
 @media (max-width: 1210px) {
     #toggle-nav {
         display: flex;
     }
 
     .hamburger-menu {
-        display: block; /* show hamburger menu */
+        display: block;
     }
 }

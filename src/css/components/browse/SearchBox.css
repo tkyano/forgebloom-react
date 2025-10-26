@@ -1,0 +1,18 @@
+.search-box {
+  width: 95%;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid var(--light-gray);
+  background-color: var(--white);
+  color: var(--dark-gray);
+  box-sizing: border-box;
+}
+
+.search-box input::placeholder {
+  color: var(--mid-gray);
+}

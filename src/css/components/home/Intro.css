@@ -1,0 +1,15 @@
+.intro-container {
+    text-align: left;
+    margin: 10px auto;
+    padding-left: 10px;
+    max-width: 700px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--white);
+}
+
+.intro-container h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: var(--white);
+}

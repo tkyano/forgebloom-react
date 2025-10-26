@@ -1,0 +1,8 @@
+.about-us-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem;
+  color: var(--white);
+  line-height: 1.3;
+  font-family: 'Arial', sans-serif;
+}

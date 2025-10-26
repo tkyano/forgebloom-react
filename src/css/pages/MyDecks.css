@@ -1,0 +1,94 @@
+.mydeck-page {
+  display: flex;
+  gap: 20px;               
+  justify-content: flex-start;
+  align-items: flex-start;  
+  padding: 20px;           
+}
+
+.mydeck-container {
+  flex: 1 1 auto;         
+  display: flex;
+  flex-direction: column;
+  gap: 20px;               
+  min-width: 0;           
+}
+
+.mydeck-container h2 {
+  text-align: center;      
+  font-size: 2rem;
+  color: var(--accent-red);
+  margin-bottom: 1rem;     
+}
+
+.mydeck-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.mydeck-card {
+  flex: 1 1 250px;
+  max-width: 300px;
+  background-color: var(--light-gray);
+  color: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  text-decoration: none;
+}
+
+.mydeck-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+.mydeck-card img {
+  width: 100%;
+  display: block;
+}
+
+.mydeck-info {
+  padding: 1rem;
+}
+
+.mydeck-info p:first-child {
+  font-weight: 600;
+  color: var(--accent-red);
+  margin-bottom: 0.5rem;
+}
+
+.mydeck-info p:last-child {
+  color: var(--dark-gray);
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.deck-tools-wrapper {
+  flex: 0 0 auto;          
+  width: 220px;            
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-right: 20px;
+}
+
+@media (max-width: 900px) {
+  .mydeck-page {
+    flex-direction: column;
+    align-items: stretch;  
+  }
+
+  .mydeck-container,
+  .deck-tools-wrapper {
+    width: 100%;           
+    flex: 1 1 auto;
+    margin-right: 0;       
+  }
+
+  .mydeck-container h2 {
+    font-size: 1.5rem;     
+  }
+}

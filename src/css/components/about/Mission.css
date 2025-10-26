@@ -1,0 +1,28 @@
+.mission {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.mission h2 {
+  text-align: center;
+  color: var(--accent-red);
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.mission p {
+  text-align: left;
+  font-size: 1.05rem;
+  margin-bottom: 1rem;
+}
+
+.mission ul {
+  padding-left: 2rem;
+  margin-bottom: 1rem;
+}
+
+.mission li {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}

@@ -1,11 +1,12 @@
 import "./../css/pages/About.css";
+import Mission from "../components/about/Mission";
 
 const About = () => {
-    return (
-        <div id="about">
-            <h1>About Page !!!!</h1>
-        </div>
-    );
+  return (
+    <main className="about-us-container">
+      <Mission />
+    </main>
+  );
 };
 
 export default About;

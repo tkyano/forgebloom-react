@@ -1,0 +1,11 @@
+.browse-layout {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.card-results {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}

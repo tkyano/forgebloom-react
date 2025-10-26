@@ -1,5 +1,5 @@
 #main-nav {
-    display: flex; /* normal nav visible on large screens */
+    display: flex;
     align-items: center;
     gap: 1rem;
 }
@@ -31,9 +31,8 @@
     color: var(--primary-red);
 }
 
-/* Responsive for small screens */
 @media (max-width: 1210px) {
     #main-nav {
-        display: none; /* hide normal nav */
+        display: none;
     }
 }

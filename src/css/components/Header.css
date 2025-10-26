@@ -1,7 +1,7 @@
 .header-container {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* logo+title left, nav/hamburger right */
+    justify-content: space-between;
     background-color: var(--primary-red);
     padding: 0.5rem 2rem;
     width: 100%;
@@ -13,7 +13,7 @@
 .logo-title {
     display: flex;
     align-items: center;
-    gap: 10px; /* fixed distance between logo and title */
+    gap: 10px;
 }
 
 #main-logo {
@@ -23,16 +23,16 @@
 .site-name {
     color: var(--white);
     font-size: 3rem;
-    white-space: nowrap; /* prevents wrapping */
+    white-space: nowrap;
 }
 
-/* Responsive for small screens */
+
 @media (max-width: 1210px) {
     #main-nav {
-        display: none; /* hide normal nav */
+        display: none;
     }
 
     .hamburger-menu {
-        display: block; /* show hamburger menu */
+        display: block;
     }
 }

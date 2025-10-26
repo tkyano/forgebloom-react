@@ -1,0 +1,18 @@
+.featured-decks-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.deck-placeholder {
+    background-color: var(--secondary);
+    border-radius: 1rem;
+    height: 180px;
+    box-shadow: 0 2px 8px rgba(255, 0, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.deck-placeholder:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 15px var(--accent);
+}
