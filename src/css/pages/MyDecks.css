@@ -7,7 +7,7 @@
 }
 
 .mydeck-container {
-  flex: 1 1 auto;         
+  flex: 4 1 0;
   display: flex;
   flex-direction: column;
   gap: 20px;               
@@ -24,15 +24,15 @@
 .mydeck-row {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.5rem;
+  gap: 20px;
+  justify-content: flex-start;
 }
 
 .mydeck-card {
-  flex: 1 1 250px;
+  flex: 1 1 calc(33.333% - 20px);
   max-width: 300px;
-  background-color: var(--light-gray);
-  color: var(--white);
+  background-color: var(--white);
+  color: var(--dark-gray);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
@@ -67,28 +67,32 @@
 }
 
 .deck-tools-wrapper {
-  flex: 0 0 auto;          
-  width: 220px;            
+  flex: 1 1 0;          
+  max-width: 220px;            
   display: flex;
   flex-direction: column;
   gap: 15px;
-  margin-right: 20px;
+  margin-left: 20px;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1200px) {
+  .mydeck-card {
+    flex: 1 1 calc(50% - 20px);
+  }
+}
+
+@media (max-width: 700px) {
+  .mydeck-card {
+    flex: 1 1 100%;
+  }
+
   .mydeck-page {
     flex-direction: column;
-    align-items: stretch;  
   }
 
-  .mydeck-container,
   .deck-tools-wrapper {
-    width: 100%;           
-    flex: 1 1 auto;
-    margin-right: 0;       
-  }
-
-  .mydeck-container h2 {
-    font-size: 1.5rem;     
+    width: 100%;
+    max-width: none;
+    margin-left: 0;
   }
 }

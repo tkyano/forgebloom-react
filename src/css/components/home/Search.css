@@ -10,7 +10,7 @@
     border: 1px solid var(--secondary);
     border-radius: 0.5rem;
     background-color: var(--white);
-    color: var(--text-light);
+    color: var(--dark-gray);
 }
 
 .search-box::placeholder {

@@ -1,7 +1,7 @@
+import React from "react";
 import "./../css/pages/MyDecks.css";
-import DeckTools from "../components/create/DeckTools";
 import Decks from "../components/decks/Decks";
-import "./../css/pages/MyDecks.css";
+import DeckTools from "../components/create/DeckTools";
 
 const MyDecks = () => {
   return (

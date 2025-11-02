@@ -1,0 +1,75 @@
+#contact-section {
+  background-color: var(--mid-gray);
+  padding: 2rem 2rem;
+  border-radius: 12px;
+  max-width: 700px;
+  margin: 3rem auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+#contact-heading {
+  text-align: center;
+  font-size: 2.25rem;
+  color: var(--accent-red);
+  margin-bottom: 0.5rem;
+}
+
+#contact-description {
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--white);
+  margin-bottom: 2rem;
+}
+
+#contact-form p {
+  margin-bottom: 1.5rem;
+}
+
+#contact-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: var(--white);
+}
+
+#contact-name,
+#contact-email,
+#contact-message {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  border: none;
+  background-color: var(--light-gray);
+  color: var(--dark-gray);
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+#contact-message {
+  min-height: 150px;
+  resize: vertical;
+}
+
+#contact-submit {
+  background-color: var(--primary-red);
+  color: var(--white);
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#contact-submit:hover {
+  background-color: var(--accent-red);
+  color: var(--dark-gray);
+}
+
+#contact-result {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 1rem;
+  color: var(--accent-red);
+}

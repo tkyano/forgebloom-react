@@ -7,6 +7,8 @@ import About from './pages/About';
 import BrowseCards from './pages/BrowseCards';
 import MyDecks from './pages/MyDecks';
 import CreateDeck from './pages/CreateDeck';
+import DeckPage from './pages/deck-page/DeckPage';
+
 
 export default function App() {
   return (
@@ -18,6 +20,8 @@ export default function App() {
           <Route path="create-deck" element={<CreateDeck />}/>
           <Route path="my-decks" element={<MyDecks />}/>
           <Route path="about" element={<About />}/>
+          <Route path="/my-decks" element={<MyDecks/>} />
+          <Route path="/decks/:deckId" element={<DeckPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
