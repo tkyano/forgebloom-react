@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.d9f7219d.css",
-    "main.js": "/static/js/main.14f0dec1.js",
-    "static/media/gitaxius.jpg": "/static/media/gitaxius.725edd601eb8cbd356ea.jpg",
-    "static/media/arbiter.jpg": "/static/media/arbiter.3fea2ae442f5d00fa3bf.jpg",
-    "static/media/izzet.jpg": "/static/media/izzet.8476225b8eb40ee0a1a2.jpg",
-    "static/media/ghalta.jpg": "/static/media/ghalta.52006222c3b796053c79.jpg",
-    "static/media/ashling.jpg": "/static/media/ashling.dc956c050e0e94ca3096.jpg",
-    "static/media/forgebloom-logo.png": "/static/media/forgebloom-logo.1351cacda6b862721931.png",
-    "index.html": "/index.html",
-    "main.d9f7219d.css.map": "/static/css/main.d9f7219d.css.map",
-    "main.14f0dec1.js.map": "/static/js/main.14f0dec1.js.map"
+    "main.css": "/forgebloom-react/static/css/main.d9f7219d.css",
+    "main.js": "/forgebloom-react/static/js/main.39719ae5.js",
+    "static/media/gitaxius.jpg": "/forgebloom-react/static/media/gitaxius.725edd601eb8cbd356ea.jpg",
+    "static/media/arbiter.jpg": "/forgebloom-react/static/media/arbiter.3fea2ae442f5d00fa3bf.jpg",
+    "static/media/izzet.jpg": "/forgebloom-react/static/media/izzet.8476225b8eb40ee0a1a2.jpg",
+    "static/media/ghalta.jpg": "/forgebloom-react/static/media/ghalta.52006222c3b796053c79.jpg",
+    "static/media/ashling.jpg": "/forgebloom-react/static/media/ashling.dc956c050e0e94ca3096.jpg",
+    "static/media/forgebloom-logo.png": "/forgebloom-react/static/media/forgebloom-logo.1351cacda6b862721931.png",
+    "index.html": "/forgebloom-react/index.html",
+    "main.d9f7219d.css.map": "/forgebloom-react/static/css/main.d9f7219d.css.map",
+    "main.39719ae5.js.map": "/forgebloom-react/static/js/main.39719ae5.js.map"
   },
   "entrypoints": [
     "static/css/main.d9f7219d.css",
-    "static/js/main.14f0dec1.js"
+    "static/js/main.39719ae5.js"
   ]
 }
