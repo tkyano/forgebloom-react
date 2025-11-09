@@ -3,9 +3,7 @@ import {useState} from "react";
 import "./../css/components/Navigation.css";
 
 const Navigation  = () => {
-    const [menuOpen, setMenuOpen] = useState(false);
-    /* [Variable name, ] */
-    
+    const [menuOpen, setMenuOpen] = useState(false);    
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
@@ -18,7 +16,7 @@ const Navigation  = () => {
                 <div></div>
                 <div></div>
             </div>
-            <ul className={menuOpen ? "" : "hide-small"}>
+            <ul className={menuOpen ? "open" : ""}>
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/browse-cards">Browse Cards</Link></li>
                 <li><Link to="/create-deck">Create A Deck</Link></li>
