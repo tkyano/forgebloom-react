@@ -10,8 +10,9 @@ const FeaturedDecks = () => {
     const fetchDecks = async () => {
       try {
         const response = await axios.get(
-          "https://tkyano.github.io/csce242/projects/part7/json/featured-decks.json"
+          "https://forgebloom-server.onrender.com/api/featured-decks"
         );
+
         setDecks(response.data);
       } catch (error) {
         console.error("Error fetching featured decks:", error);

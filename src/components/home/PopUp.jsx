@@ -5,11 +5,9 @@ const PopUp = ({ card, onClose }) => {
     <div className="popup-overlay" onClick={onClose}>
       <div
         className="popup-content"
-        onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside
+        onClick={(e) => e.stopPropagation()} 
       >
-        <button className="popup-close" onClick={onClose}>
-          &times; {/* ← HTML entity for a nice × symbol */}
-        </button>
+        <button className="popup-close" onClick={onClose}>&times;</button>
 
         <img src={card.image_uris.normal} alt={card.name} />
         <h2>{card.name}</h2>

@@ -9,9 +9,8 @@ const FeaturedCards = () => {
   useEffect(() => {
     const fetchCards = async () => {
       try {
-        const response = await axios.get(
-          "https://tkyano.github.io/csce242/projects/part7/json/oracle-cards.json"
-        );
+        const response = await axios.get("https://forgebloom-server.onrender.com/api/oracle-cards");
+
 
         const cardsWithImages = response.data.filter(
           (card) => card.image_uris && card.image_uris.normal
