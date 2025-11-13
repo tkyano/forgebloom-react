@@ -15,7 +15,6 @@
   overflow: hidden;
   text-decoration: none;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
   display: flex;
   flex-direction: column;
 }
@@ -41,7 +40,7 @@
 }
 
 .mydeck-info p:last-child {
-  color: var(--text-dark);
+  color: var(--dark-gray);
   font-size: 0.95rem;
   line-height: 1.4;
 }
