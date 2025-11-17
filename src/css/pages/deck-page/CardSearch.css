@@ -1,30 +1,83 @@
+/* CardSearch.css */
+
 .card-search {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.75rem;
+  gap: 1rem;
+  padding: 1rem;
 }
 
 .card-search input {
   width: 100%;
   max-width: 500px;
   padding: 0.75rem 1rem;
-  border: 1px solid var(--secondary);
-  border-radius: 8px;
+  border: 2px solid var(--secondary);
+  border-radius: 12px;
   background-color: var(--white);
   color: var(--dark-gray);
   font-size: 1rem;
+  box-sizing: border-box;
 }
 
 .card-search input::placeholder {
   color: var(--dark-gray);
 }
 
+/* Grid for search results */
 .card-results-grid {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* bigger cards */
   gap: 1rem;
   margin-top: 1rem;
+  justify-items: center;
+}
+
+/* Individual card styling */
+.card-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: none; /* no white background */
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  transition: transform 0.2s ease-in-out;
+}
+
+.card-result:hover {
+  transform: translateY(-5px);
+}
+
+.card-result img {
+  width: 280px; /* 1.5x bigger than base */
+  height: auto;
+  object-fit: cover;
+  border-radius: 12px; /* rounded corners */
+}
+
+.card-result p {
+  margin: 8px 0;
+  text-align: center;
+  font-weight: 500;
+  color: var(--text-dark);
+}
+
+.card-result button {
+  background-color: var(--accent-red);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 6px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.card-result button:hover {
+  background-color: darkred;
 }

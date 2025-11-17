@@ -3,63 +3,73 @@ import DeckTitle from "./DeckTitle";
 import CardSearch from "./CardSearch";
 import CurrentDeck from "./CurrentDeck";
 import DeckToolsBottom from "./DeckToolsBottom";
+import axios from "axios";
 import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 const DeckPage = () => {
   const { deckId } = useParams();
+  const [deckCards, setDeckCards] = useState([]);
 
-  // Hardcoded deck info for now
-  const deckData = {
-    "mono-red-burn": {
-      title: "Mono Red Burn",
-      cards: [
-        { name: "Lightning Bolt", type: "Instant" },
-        { name: "Shock", type: "Instant" },
-        { name: "Goblin Guide", type: "Creature" },
-      ],
-    },
-    "blue-red-spells": {
-      title: "Blue/Red Spells",
-      cards: [
-        { name: "Counterspell", type: "Instant" },
-        { name: "Fireball", type: "Sorcery" },
-      ],
-    },
-    "white-blue-bounce": {
-      title: "White/Blue Bounce",
-      cards: [
-        { name: "Unsummon", type: "Instant" },
-        { name: "Azorius Charm", type: "Instant" },
-      ],
-    },
-    "blue-control": {
-      title: "Blue Control",
-      cards: [
-        { name: "Brainstorm", type: "Instant" },
-        { name: "Force of Will", type: "Instant" },
-      ],
-    },
-    "green-creature": {
-      title: "Green Creature",
-      cards: [
-        { name: "Llanowar Elves", type: "Creature" },
-        { name: "Ghalta, Primal Hunger", type: "Creature" },
-      ],
-    },
+  useEffect(() => {
+    const fetchDeck = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3001/api/decks/${deckId}`);
+        setDeckCards(response.data.map(c => ({ ...c, count: c.count || 1 })));
+      } catch (err) {
+        console.error("Error fetching deck:", err);
+      }
+    };
+    fetchDeck();
+  }, [deckId]);
+
+  const addCardToDeck = async (card) => {
+    setDeckCards(prev => {
+      const index = prev.findIndex(c => c.name === card.name);
+      if (index !== -1) {
+        const updated = [...prev];
+        updated[index].count += 1;
+        return updated;
+      } else {
+        return [...prev, { ...card, count: 1 }];
+      }
+    });
+
+    try {
+      await axios.post(`http://localhost:3001/api/decks/${deckId}/add-card`, {
+        name: card.name,
+        type: card.type || "Unknown",
+        image_uris: card.image_uris || {},
+      });
+      console.log("Card saved to server!");
+    } catch (err) {
+      console.error("Failed to save card:", err);
+    }
   };
 
-  const deck = deckData[deckId] || { title: "Unknown Deck", cards: [] };
+  const incrementCard = (card) => {
+    setDeckCards(prev =>
+      prev.map(c => c.name === card.name ? { ...c, count: c.count + 1 } : c)
+    );
+  };
 
-
-
-
+  const decrementCard = (card) => {
+    setDeckCards(prev =>
+      prev.map(c => c.name === card.name ? { ...c, count: c.count - 1 } : c)
+          .filter(c => c.count > 0)
+    );
+  };
 
   return (
     <main className="deck-builder-page">
-      <DeckTitle title={deck.title} />
+      <DeckTitle title={deckId} />
       <div className="deck-builder-content">
-        <CardSearch />
-        <CurrentDeck cards={deck.cards} />
+        <CardSearch addCardToDeck={addCardToDeck} />
+        <CurrentDeck
+          cards={deckCards}
+          incrementCard={incrementCard}
+          decrementCard={decrementCard}
+        />
       </div>
       <DeckToolsBottom />
     </main>

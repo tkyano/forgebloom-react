@@ -1,18 +1,19 @@
 import React from "react";
 import "../../css/pages/deck-page/CurrentDeck.css";
 
-const CurrentDeck = ({ cards = [] }) => {
+const CurrentDeck = ({ cards = [], incrementCard, decrementCard }) => {
   return (
     <section className="current-deck">
-      <h2>Your Deck ({cards.length} cards)</h2>
+      <h2>Your Deck ({cards.reduce((sum, c) => sum + c.count, 0)} cards)</h2>
       <div className="deck-cards-grid">
         {cards.map((card, idx) => (
           <div key={idx} className="deck-card">
             <p>{card.name}</p>
             <small>{card.type}</small>
+            <p>Count: {card.count}</p>
             <div className="deck-card-buttons">
-              <button>+</button>
-              <button>-</button>
+              <button onClick={() => incrementCard(card)}>+</button>
+              <button onClick={() => decrementCard(card)}>-</button>
             </div>
           </div>
         ))}

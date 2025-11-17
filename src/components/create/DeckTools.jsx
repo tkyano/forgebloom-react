@@ -3,7 +3,7 @@ import "../../css/components/create/DeckTools.css";
 const DeckTools = () => {
   return (
     <div className="deck-tools">
-      <a href="#" className="new-deck-btn">New Deck</a>
+      <a href="/forgebloom-react/decks/new-deck" className="new-deck-btn">New Deck</a>
 
       <div className="filter-group">
         <h3>Format</h3>

@@ -26,7 +26,7 @@ const FeaturedDecks = () => {
       {decks.slice(0, 4).map((deck) => (
         <div key={deck._id} className="deck-card">
           <div className="deck-image-wrapper">
-            <img src={deck.image} alt={deck.name} className="deck-image" />
+            {/* <img src={deck.image} alt={deck.name} className="deck-image" /> */}
           </div>
           <div className="deck-info">
             <p className="deck-name">{deck.name}</p>
