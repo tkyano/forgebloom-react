@@ -1,14 +1,18 @@
+import { Link } from "react-router-dom";
 import "../../css/components/create/DeckTools.css";
 
 const DeckTools = () => {
   return (
     <div className="deck-tools">
-      <a href="/forgebloom-react/decks/new-deck" className="new-deck-btn">New Deck</a>
+      {/* Use Link instead of <a> for internal routing */}
+      <Link to="/decks/new-deck" className="new-deck-btn">
+        New Deck
+      </Link>
 
       <div className="filter-group">
         <h3>Format</h3>
         <select>
-          <option value="any"></option>
+          <option value="any">Any</option>
           <option>Commander</option>
           <option>Standard</option>
           <option>Pauper</option>

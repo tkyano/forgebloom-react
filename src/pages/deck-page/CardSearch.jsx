@@ -10,20 +10,23 @@ const CardSearch = ({ addCardToDeck }) => {
   const [results, setResults] = useState([]);
   const [selectedCard, setSelectedCard] = useState(null);
 
+  const API_BASE =
+    process.env.NODE_ENV === "production"
+      ? "https://forgebloom-server.onrender.com"
+      : "http://localhost:3001";
+
   // Fetch oracle cards
   useEffect(() => {
     const fetchCards = async () => {
       try {
-        const response = await axios.get(
-          "https://forgebloom-server.onrender.com/api/oracle-cards"
-        );
+        const response = await axios.get(`${API_BASE}/api/oracle-cards`);
         setAllCards(response.data);
       } catch (err) {
         console.error("Error fetching cards:", err);
       }
     };
     fetchCards();
-  }, []);
+  }, [API_BASE]);
 
   // Filter cards based on search term
   useEffect(() => {

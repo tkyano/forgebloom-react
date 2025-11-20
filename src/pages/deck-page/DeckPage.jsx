@@ -8,6 +8,11 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
+const API_BASE =
+  process.env.NODE_ENV === "production"
+    ? "https://forgebloom-server.onrender.com"
+    : "http://localhost:3001";
+
 const DeckPage = () => {
   const { deckId } = useParams();
   const [deckCards, setDeckCards] = useState([]);
@@ -16,7 +21,7 @@ const DeckPage = () => {
   useEffect(() => {
     const fetchDeck = async () => {
       try {
-        const response = await axios.get(`https://forgebloom-server.onrender.com/api/decks/${deckId}`);
+        const response = await axios.get(`${API_BASE}/api/decks/${deckId}`);
         setDeckCards(response.data.map(c => ({ ...c, count: c.count || 1 })));
       } catch (err) {
         console.error("Error fetching deck:", err);
@@ -38,7 +43,7 @@ const DeckPage = () => {
     });
 
     try {
-      await axios.post(`https://forgebloom-server.onrender.com/api/decks/${deckId}/add-card`, {
+      await axios.post(`${API_BASE}/api/decks/${deckId}/add-card`, {
         name: card.name,
         type: card.type || "Unknown",
         image_uris: card.image_uris || {},
@@ -52,6 +57,7 @@ const DeckPage = () => {
     setDeckCards(prev =>
       prev.map(c => c.name === card.name ? { ...c, count: c.count + 1 } : c)
     );
+    // Optionally update server count here
   };
 
   const decrementCard = (card) => {
@@ -64,7 +70,6 @@ const DeckPage = () => {
       setDeckCards(prev =>
         prev.map(c => c.name === card.name ? { ...c, count: c.count - 1 } : c)
       );
-      // Update server
       updateDeckServer(card, target.count - 1);
     }
   };
@@ -74,7 +79,7 @@ const DeckPage = () => {
     setRemoveCard(null);
 
     try {
-      await axios.post(`https://forgebloom-server.onrender.com/api/decks/${deckId}/remove-card`, {
+      await axios.post(`${API_BASE}/api/decks/${deckId}/remove-card`, {
         name: card.name,
         type: card.type || "Unknown"
       });
@@ -86,8 +91,8 @@ const DeckPage = () => {
   const updateDeckServer = async (card, newCount) => {
     if (newCount <= 0) return;
     try {
-      // Naive approach: remove old and re-add with updated count
-      await axios.post(`https://forgebloom-server.onrender.com/api/decks/${deckId}/add-card`, {
+      // Remove old and re-add with updated count
+      await axios.post(`${API_BASE}/api/decks/${deckId}/add-card`, {
         name: card.name,
         type: card.type || "Unknown",
         image_uris: card.image_uris || {},
