@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/forgebloom-react/static/css/main.18c13d3f.css",
-    "main.js": "/forgebloom-react/static/js/main.62ef19c2.js",
+    "main.js": "/forgebloom-react/static/js/main.973ef4f0.js",
     "static/media/gitaxius.jpg": "/forgebloom-react/static/media/gitaxius.725edd601eb8cbd356ea.jpg",
     "static/media/arbiter.jpg": "/forgebloom-react/static/media/arbiter.3fea2ae442f5d00fa3bf.jpg",
     "static/media/izzet.jpg": "/forgebloom-react/static/media/izzet.8476225b8eb40ee0a1a2.jpg",
@@ -10,10 +10,10 @@
     "static/media/forgebloom-logo.png": "/forgebloom-react/static/media/forgebloom-logo.1351cacda6b862721931.png",
     "index.html": "/forgebloom-react/index.html",
     "main.18c13d3f.css.map": "/forgebloom-react/static/css/main.18c13d3f.css.map",
-    "main.62ef19c2.js.map": "/forgebloom-react/static/js/main.62ef19c2.js.map"
+    "main.973ef4f0.js.map": "/forgebloom-react/static/js/main.973ef4f0.js.map"
   },
   "entrypoints": [
     "static/css/main.18c13d3f.css",
-    "static/js/main.62ef19c2.js"
+    "static/js/main.973ef4f0.js"
   ]
 }
