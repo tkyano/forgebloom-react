@@ -3,6 +3,7 @@ import DeckTitle from "./DeckTitle";
 import CardSearch from "./CardSearch";
 import CurrentDeck from "./CurrentDeck";
 import DeckToolsBottom from "./DeckToolsBottom";
+import RemoveDialog from "./RemoveDialog";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -10,6 +11,7 @@ import { useState, useEffect } from "react";
 const DeckPage = () => {
   const { deckId } = useParams();
   const [deckCards, setDeckCards] = useState([]);
+  const [removeCard, setRemoveCard] = useState(null);
 
   useEffect(() => {
     const fetchDeck = async () => {
@@ -41,7 +43,6 @@ const DeckPage = () => {
         type: card.type || "Unknown",
         image_uris: card.image_uris || {},
       });
-      console.log("Card saved to server!");
     } catch (err) {
       console.error("Failed to save card:", err);
     }
@@ -54,10 +55,46 @@ const DeckPage = () => {
   };
 
   const decrementCard = (card) => {
-    setDeckCards(prev =>
-      prev.map(c => c.name === card.name ? { ...c, count: c.count - 1 } : c)
-          .filter(c => c.count > 0)
-    );
+    const target = deckCards.find(c => c.name === card.name);
+    if (!target) return;
+
+    if (target.count <= 1) {
+      setRemoveCard(target); // show remove confirmation dialog
+    } else {
+      setDeckCards(prev =>
+        prev.map(c => c.name === card.name ? { ...c, count: c.count - 1 } : c)
+      );
+      // Update server
+      updateDeckServer(card, target.count - 1);
+    }
+  };
+
+  const confirmRemove = async (card) => {
+    setDeckCards(prev => prev.filter(c => c.name !== card.name));
+    setRemoveCard(null);
+
+    try {
+      await axios.post(`https://forgebloom-server.onrender.com/api/decks/${deckId}/remove-card`, {
+        name: card.name,
+        type: card.type || "Unknown"
+      });
+    } catch (err) {
+      console.error("Failed to remove card from server:", err);
+    }
+  };
+
+  const updateDeckServer = async (card, newCount) => {
+    if (newCount <= 0) return;
+    try {
+      // Naive approach: remove old and re-add with updated count
+      await axios.post(`https://forgebloom-server.onrender.com/api/decks/${deckId}/add-card`, {
+        name: card.name,
+        type: card.type || "Unknown",
+        image_uris: card.image_uris || {},
+      });
+    } catch (err) {
+      console.error("Failed to update card count on server:", err);
+    }
   };
 
   return (
@@ -72,6 +109,11 @@ const DeckPage = () => {
         />
       </div>
       <DeckToolsBottom />
+      <RemoveDialog
+        card={removeCard}
+        onClose={() => setRemoveCard(null)}
+        onConfirm={confirmRemove}
+      />
     </main>
   );
 };

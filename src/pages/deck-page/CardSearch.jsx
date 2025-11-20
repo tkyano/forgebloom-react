@@ -1,16 +1,22 @@
+// src/components/deck-page/CardSearch.jsx
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../css/pages/deck-page/CardSearch.css";
+import CardDialog from "./CardDialog";
 
 const CardSearch = ({ addCardToDeck }) => {
   const [allCards, setAllCards] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [results, setResults] = useState([]);
+  const [selectedCard, setSelectedCard] = useState(null);
 
+  // Fetch oracle cards
   useEffect(() => {
     const fetchCards = async () => {
       try {
-        const response = await axios.get("https://forgebloom-server.onrender.com/api/oracle-cards");
+        const response = await axios.get(
+          "https://forgebloom-server.onrender.com/api/oracle-cards"
+        );
         setAllCards(response.data);
       } catch (err) {
         console.error("Error fetching cards:", err);
@@ -19,17 +25,23 @@ const CardSearch = ({ addCardToDeck }) => {
     fetchCards();
   }, []);
 
+  // Filter cards based on search term
   useEffect(() => {
     if (!searchTerm) {
       setResults([]);
       return;
     }
-    const filtered = allCards.filter(card =>
-      card.name?.toLowerCase().includes(searchTerm.toLowerCase()) &&
-      card.image_uris?.normal
+    const filtered = allCards.filter(
+      (card) =>
+        card.name?.toLowerCase().includes(searchTerm.toLowerCase()) &&
+        card.image_uris?.normal
     );
     setResults(filtered.slice(0, 25));
   }, [searchTerm, allCards]);
+
+  // Dialog controls
+  const openCardDialog = (card) => setSelectedCard(card);
+  const closeCardDialog = () => setSelectedCard(null);
 
   return (
     <section className="card-search">
@@ -39,17 +51,30 @@ const CardSearch = ({ addCardToDeck }) => {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
+
       <div className="card-results-grid">
-        {results.map(card => (
-          <div key={card.id || card.name} className="card-result">
+        {results.map((card) => (
+          <div
+            key={card.id || card.name}
+            className="card-result"
+            onClick={() => openCardDialog(card)}
+          >
             {card.image_uris?.normal && (
               <img src={card.image_uris.normal} alt={card.name} />
             )}
             <p>{card.name}</p>
-            <button onClick={() => addCardToDeck(card)}>Add</button>
           </div>
         ))}
       </div>
+
+      <CardDialog
+        card={selectedCard}
+        onClose={closeCardDialog}
+        onAdd={(card) => {
+          addCardToDeck(card);
+          closeCardDialog();
+        }}
+      />
     </section>
   );
 };
