@@ -14,7 +14,7 @@ const DeckPage = () => {
   useEffect(() => {
     const fetchDeck = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/api/decks/${deckId}`);
+        const response = await axios.get(`https://forgebloom-server.onrender.com/api/decks/${deckId}`);
         setDeckCards(response.data.map(c => ({ ...c, count: c.count || 1 })));
       } catch (err) {
         console.error("Error fetching deck:", err);
@@ -36,7 +36,7 @@ const DeckPage = () => {
     });
 
     try {
-      await axios.post(`http://localhost:3001/api/decks/${deckId}/add-card`, {
+      await axios.post(`https://forgebloom-server.onrender.com/api/decks/${deckId}/add-card`, {
         name: card.name,
         type: card.type || "Unknown",
         image_uris: card.image_uris || {},
