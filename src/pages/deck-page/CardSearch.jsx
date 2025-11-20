@@ -10,7 +10,7 @@ const CardSearch = ({ addCardToDeck }) => {
   useEffect(() => {
     const fetchCards = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/api/oracle-cards");
+        const response = await axios.get("https://forgebloom-server.onrender.com/api/oracle-cards");
         setAllCards(response.data);
       } catch (err) {
         console.error("Error fetching cards:", err);
