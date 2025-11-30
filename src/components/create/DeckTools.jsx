@@ -4,7 +4,6 @@ import "../../css/components/create/DeckTools.css";
 const DeckTools = () => {
   return (
     <div className="deck-tools">
-      {/* Use Link instead of <a> for internal routing */}
       <Link to="/decks/new-deck" className="new-deck-btn">
         New Deck
       </Link>

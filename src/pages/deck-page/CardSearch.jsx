@@ -1,4 +1,3 @@
-// src/components/deck-page/CardSearch.jsx
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../css/pages/deck-page/CardSearch.css";
@@ -15,7 +14,6 @@ const CardSearch = ({ addCardToDeck }) => {
       ? "https://forgebloom-server.onrender.com"
       : "http://localhost:3001";
 
-  // Fetch oracle cards
   useEffect(() => {
     const fetchCards = async () => {
       try {
@@ -28,7 +26,6 @@ const CardSearch = ({ addCardToDeck }) => {
     fetchCards();
   }, [API_BASE]);
 
-  // Filter cards based on search term
   useEffect(() => {
     if (!searchTerm) {
       setResults([]);
@@ -42,7 +39,6 @@ const CardSearch = ({ addCardToDeck }) => {
     setResults(filtered.slice(0, 25));
   }, [searchTerm, allCards]);
 
-  // Dialog controls
   const openCardDialog = (card) => setSelectedCard(card);
   const closeCardDialog = () => setSelectedCard(null);
 

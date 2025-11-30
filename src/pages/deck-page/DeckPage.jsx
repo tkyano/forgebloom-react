@@ -18,6 +18,7 @@ const DeckPage = () => {
   const [deckCards, setDeckCards] = useState([]);
   const [removeCard, setRemoveCard] = useState(null);
 
+  // Load deck
   useEffect(() => {
     const fetchDeck = async () => {
       try {
@@ -30,6 +31,7 @@ const DeckPage = () => {
     fetchDeck();
   }, [deckId]);
 
+  // Add card
   const addCardToDeck = async (card) => {
     setDeckCards(prev => {
       const index = prev.findIndex(c => c.name === card.name);
@@ -37,68 +39,80 @@ const DeckPage = () => {
         const updated = [...prev];
         updated[index].count += 1;
         return updated;
-      } else {
-        return [...prev, { ...card, count: 1 }];
       }
+      return [...prev, { ...card, count: 1 }];
     });
 
     try {
       await axios.post(`${API_BASE}/api/decks/${deckId}/add-card`, {
         name: card.name,
         type: card.type || "Unknown",
-        image_uris: card.image_uris || {},
+        image_uris: card.image_uris || {}
       });
     } catch (err) {
-      console.error("Failed to save card:", err);
+      console.error("Failed to add card:", err);
     }
   };
 
-  const incrementCard = (card) => {
+  // Increment
+  const incrementCard = async (card) => {
+    const updatedCount = card.count + 1;
+
     setDeckCards(prev =>
-      prev.map(c => c.name === card.name ? { ...c, count: c.count + 1 } : c)
+      prev.map(c => c.name === card.name ? { ...c, count: updatedCount } : c)
     );
-    // Optionally update server count here
-  };
 
-  const decrementCard = (card) => {
-    const target = deckCards.find(c => c.name === card.name);
-    if (!target) return;
-
-    if (target.count <= 1) {
-      setRemoveCard(target); // show remove confirmation dialog
-    } else {
-      setDeckCards(prev =>
-        prev.map(c => c.name === card.name ? { ...c, count: c.count - 1 } : c)
-      );
-      updateDeckServer(card, target.count - 1);
+    try {
+      await axios.put(`${API_BASE}/api/decks/${deckId}/update-card`, {
+        name: card.name,
+        type: card.type || "Unknown",
+        count: updatedCount,
+        image_uris: card.image_uris || {}
+      });
+    } catch (err) {
+      console.error("Failed to increment card:", err);
     }
   };
 
+  // Decrement
+  const decrementCard = async (card) => {
+    const updatedCount = card.count - 1;
+
+    if (updatedCount <= 0) {
+      setRemoveCard(card);
+      return;
+    }
+
+    setDeckCards(prev =>
+      prev.map(c => c.name === card.name ? { ...c, count: updatedCount } : c)
+    );
+
+    try {
+      await axios.put(`${API_BASE}/api/decks/${deckId}/update-card`, {
+        name: card.name,
+        type: card.type || "Unknown",
+        count: updatedCount,
+        image_uris: card.image_uris || {}
+      });
+    } catch (err) {
+      console.error("Failed to decrement card:", err);
+    }
+  };
+
+  // Confirm delete
   const confirmRemove = async (card) => {
     setDeckCards(prev => prev.filter(c => c.name !== card.name));
     setRemoveCard(null);
 
     try {
-      await axios.post(`${API_BASE}/api/decks/${deckId}/remove-card`, {
-        name: card.name,
-        type: card.type || "Unknown"
+      await axios.delete(`${API_BASE}/api/decks/${deckId}/delete-card`, {
+        data: {
+          name: card.name,
+          type: card.type || "Unknown"
+        }
       });
     } catch (err) {
-      console.error("Failed to remove card from server:", err);
-    }
-  };
-
-  const updateDeckServer = async (card, newCount) => {
-    if (newCount <= 0) return;
-    try {
-      // Remove old and re-add with updated count
-      await axios.post(`${API_BASE}/api/decks/${deckId}/add-card`, {
-        name: card.name,
-        type: card.type || "Unknown",
-        image_uris: card.image_uris || {},
-      });
-    } catch (err) {
-      console.error("Failed to update card count on server:", err);
+      console.error("Failed to delete card:", err);
     }
   };
 

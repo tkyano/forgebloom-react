@@ -1,4 +1,3 @@
-// src/components/deck-page/CardDialog.jsx
 import React from "react";
 import "../../css/pages/deck-page/CardDialog.css";
 
@@ -10,7 +9,10 @@ const CardDialog = ({ card, onClose, onAdd, deckMode, onIncrement, onDecrement }
       <div className="dialog-content" onClick={e => e.stopPropagation()}>
         <span className="dialog-close" onClick={onClose}>&times;</span>
         <h2>{card.name}</h2>
-        {card.image_uris?.normal && <img src={card.image_uris.normal} alt={card.name} />}
+        {card.image_uris?.normal && (
+          <img src={card.image_uris.normal} alt={card.name} />
+        )}
+
         {deckMode ? (
           <div className="deck-controls">
             <button onClick={() => onIncrement(card)}>+</button>

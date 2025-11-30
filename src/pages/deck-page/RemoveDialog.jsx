@@ -1,4 +1,3 @@
-// src/components/deck-page/RemoveDialog.jsx
 import React from "react";
 import "../../css/pages/deck-page/RemoveDialog.css";
 
