@@ -28,6 +28,11 @@
   animation: fadeIn 0.2s ease-out;
 }
 
+.dialog-content {
+  z-index: 1000;
+}
+
+
 /* Close button */
 .dialog-close {
   position: absolute;
