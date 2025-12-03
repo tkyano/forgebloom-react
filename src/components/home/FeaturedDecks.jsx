@@ -10,30 +10,38 @@ const FeaturedDecks = () => {
     const fetchDecks = async () => {
       try {
         const response = await axios.get(
-          "https://forgebloom-server.onrender.com/api/featured-decks"
+          "http://localhost:3001/api/featured-decks"
         );
 
-        setDecks(response.data);
+        // Always ensure array
+        if (Array.isArray(response.data)) setDecks(response.data);
+        else setDecks([]);
       } catch (error) {
         console.error("Error fetching featured decks:", error);
+        setDecks([]);
       }
     };
+
     fetchDecks();
   }, []);
 
   return (
     <section className="featured-decks-container">
-      {decks.slice(0, 4).map((deck) => (
-        <div key={deck._id} className="deck-card">
-          <div className="deck-image-wrapper">
-            <img src={deck.image} alt={deck.name} className="deck-image" />
+      {decks.length > 0 ? (
+        decks.slice(0, 4).map((deck) => (
+          <div key={deck._id} className="deck-card">
+            <div className="deck-image-wrapper">
+              <img src={deck.image} alt={deck.name} className="deck-image" />
+            </div>
+            <div className="deck-info">
+              <p className="deck-name">{deck.name}</p>
+              <p className="deck-description">{deck.description}</p>
+            </div>
           </div>
-          <div className="deck-info">
-            <p className="deck-name">{deck.name}</p>
-            <p className="deck-description">{deck.description}</p>
-          </div>
-        </div>
-      ))}
+        ))
+      ) : (
+        <p>Loading featured decks...</p>
+      )}
     </section>
   );
 };

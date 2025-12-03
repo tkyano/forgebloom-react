@@ -9,10 +9,12 @@ const FeaturedCards = () => {
   useEffect(() => {
     const fetchCards = async () => {
       try {
-        const response = await axios.get("https://forgebloom-server.onrender.com/api/oracle-cards");
+        const response = await axios.get(
+          "https://forgebloom-server.onrender.com/api/oracle-cards"
+        );
 
-
-        const cardsWithImages = response.data.filter(
+        const responseData = Array.isArray(response.data) ? response.data : [];
+        const cardsWithImages = responseData.filter(
           (card) => card.image_uris && card.image_uris.normal
         );
 
@@ -20,8 +22,10 @@ const FeaturedCards = () => {
         setCards(shuffled.slice(0, 10));
       } catch (error) {
         console.error("Error fetching cards:", error);
+        setCards([]);
       }
     };
+
 
     fetchCards();
   }, []);
