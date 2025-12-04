@@ -69,11 +69,12 @@ const CardSearch = ({ addCardToDeck }) => {
       <CardDialog
         card={selectedCard}
         onClose={closeCardDialog}
-        onAdd={(card) => {
-          addCardToDeck(card);
+        onAdd={(card, count) => {
+          addCardToDeck(card, count);   // <-- pass count to DeckPage
           closeCardDialog();
         }}
       />
+
     </section>
   );
 };

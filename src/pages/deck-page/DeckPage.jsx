@@ -32,27 +32,33 @@ const DeckPage = () => {
   }, [deckId]);
 
   // Add card
-  const addCardToDeck = async (card) => {
-    setDeckCards(prev => {
-      const index = prev.findIndex(c => c.name === card.name);
-      if (index !== -1) {
-        const updated = [...prev];
-        updated[index].count += 1;
-        return updated;
-      }
-      return [...prev, { ...card, count: 1 }];
-    });
+  const addCardToDeck = async (card, count = 1) => {
 
-    try {
+  // Update UI immediately
+  setDeckCards(prev => {
+    const index = prev.findIndex(c => c.name === card.name);
+    if (index !== -1) {
+      const updated = [...prev];
+      updated[index].count += count;
+      return updated;
+    }
+    return [...prev, { ...card, count }];
+  });
+
+  // Send N copies to server using existing add-card API
+  try {
+    for (let i = 0; i < count; i++) {
       await axios.post(`${API_BASE}/api/decks/${deckId}/add-card`, {
         name: card.name,
         type: card.type || "Unknown",
         image_uris: card.image_uris || {}
       });
-    } catch (err) {
-      console.error("Failed to add card:", err);
     }
-  };
+  } catch (err) {
+    console.error("Failed to add card:", err);
+  }
+};
+
 
   // Increment
   const incrementCard = async (card) => {
